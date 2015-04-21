@@ -9,7 +9,19 @@
   <body class="mixpanel-platform-body">
     <h1>Hello, World!</h1>
     <script>
-      // Run queries and display results here
+      MP.api.query('api/2.0/retention/addiction', {
+        event: ['Track'], 
+        unit: 'day', 
+        from_date:'2015-04-08',
+        to_date:'2015-04-21',
+        addiction_unit:'hour',
+        segment_method:'first'}, {dataType: 'json'})
+.done(function(json) {
+    console.log('got json\n', json);
+})
+.fail(function($xhr) {
+    console.log('error with request', $xhr);
+});
     </script>
   </body>
 </html>
